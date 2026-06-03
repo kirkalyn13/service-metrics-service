@@ -26,7 +26,7 @@ public class KafkaMessageTests {
 
     @Test
     void sendsAndReceivesMessage() {
-        var consumerProps = KafkaTestUtils.consumerProps(embeddedKafka, "service_metrics_pipeline", true);
+        var consumerProps = KafkaTestUtils.consumerProps(embeddedKafka, "test-group", true);
         try (Consumer<String, String> consumer = new org.apache.kafka.clients.consumer.KafkaConsumer<>(consumerProps, new StringDeserializer(), new StringDeserializer())) {
 
             consumer.subscribe(java.util.List.of("speed_test"));
