@@ -1,4 +1,4 @@
-package com.engrkirky.service_metrics_service;
+package com.engrkirky.service_metrics_service.kafka;
 
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
