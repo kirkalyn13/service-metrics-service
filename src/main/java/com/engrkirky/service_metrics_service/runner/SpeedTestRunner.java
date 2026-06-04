@@ -16,14 +16,14 @@ public class SpeedTestRunner {
         this.speedTestProducer = speedTestProducer;
     }
 
-    @Bean
-    ApplicationRunner runner() {
-        return args -> {
-            speedTestProducer.publish(new SpeedTestResult(
-                    "2026-05-25T09:24:36.148779Z",
-                    "Spectrum", "192.168.0.10", "Nashville, TN",
-                    1037.11, 39.28, 28.0, 34.0, 27.0
-            ));
-        };
-    }
+//    @Bean
+//    ApplicationRunner runner() {
+//        return args -> {
+//            speedTestProducer.publish(new SpeedTestResult(
+//                    "2026-05-25T09:24:36.148779Z",
+//                    "Spectrum", "192.168.0.10", "Nashville, TN",
+//                    1037.11, 39.28, 28.0, 34.0, 27.0
+//            ));
+//        };
+//    }
 }

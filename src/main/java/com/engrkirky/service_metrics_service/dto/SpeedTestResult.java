@@ -1,23 +1,18 @@
 package com.engrkirky.service_metrics_service.dto;
 
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Represents a recorded internet speed test result.
  */
-@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public record SpeedTestResult (
     String timestamp,
     String isp,
     String ip,
     String location,
-    double downloadSpeedMbps,
-    double uploadSpeedMbps,
-    double idleLatencyMs,
-    double downloadLatencyMs,
-    double uploadLatencyMs
+    @JsonProperty("download_speed_mbps") double downloadSpeedMbps,
+    @JsonProperty("upload_speed_mbps") double uploadSpeedMbps,
+    @JsonProperty("idle_latency_ms") double idleLatencyMs,
+    @JsonProperty("download_latency_ms") double downloadLatencyMs,
+    @JsonProperty("upload_latency_ms") double uploadLatencyMs
 ) {}
