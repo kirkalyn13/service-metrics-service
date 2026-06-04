@@ -1,6 +1,17 @@
+server:
+  port: 8081
+
 spring:
   application:
     name: service-metrics-service
+  datasource:
+    url: ${PG_URL}
+    username: ${PG_USER}
+    password: ${PG_PASSWORD}
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: create
 
 kafka:
   consumer:
