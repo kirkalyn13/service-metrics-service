@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Represents a recorded internet speed test result.
  */
-public record SpeedTestResultDTO(
+public record SpeedTestDTO(
     String timestamp,
     String isp,
     String ip,

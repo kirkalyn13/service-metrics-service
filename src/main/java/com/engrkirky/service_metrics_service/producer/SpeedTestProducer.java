@@ -1,6 +1,6 @@
 package com.engrkirky.service_metrics_service.producer;
 
-import com.engrkirky.service_metrics_service.dto.SpeedTestResultDTO;
+import com.engrkirky.service_metrics_service.dto.SpeedTestDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,9 +21,9 @@ public class SpeedTestProducer {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void publish(SpeedTestResultDTO speedTestResultDTO) {
+    public void publish(SpeedTestDTO speedTestDTO) {
         try {
-            String message = objectMapper.writeValueAsString(speedTestResultDTO);
+            String message = objectMapper.writeValueAsString(speedTestDTO);
             kafkaTemplate.send(SPEED_TEST_TOPIC, message);
             log.info("Published speed test result: {}", message);
         } catch (Exception e) {

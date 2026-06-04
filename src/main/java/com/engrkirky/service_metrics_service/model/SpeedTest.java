@@ -12,7 +12,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Table(name="raw_speed_test")
-public class SpeedTestResult {
+public class SpeedTest {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
+
     @Column(name = "timestamp")
     private String timestamp;
 

@@ -1,7 +1,7 @@
 package com.engrkirky.service_metrics_service.controller;
 
 import com.engrkirky.service_metrics_service.dto.KafkaResponse;
-import com.engrkirky.service_metrics_service.dto.SpeedTestResultDTO;
+import com.engrkirky.service_metrics_service.dto.SpeedTestDTO;
 import com.engrkirky.service_metrics_service.producer.SpeedTestProducer;
 import com.engrkirky.service_metrics_service.util.KafkaConstants;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +22,9 @@ public class SpeedTestController {
     }
 
     @PostMapping
-    public ResponseEntity<KafkaResponse> publishSpeedTest(@RequestBody SpeedTestResultDTO speedTestResultDTO) {
+    public ResponseEntity<KafkaResponse> publishSpeedTest(@RequestBody SpeedTestDTO speedTestDTO) {
         try {
-            speedTestProducer.publish(speedTestResultDTO);
+            speedTestProducer.publish(speedTestDTO);
             return new ResponseEntity<>(
                     new KafkaResponse(KafkaConstants.PUBLISHED_STATUS, SPEED_TEST_TOPIC),
                     HttpStatus.OK

@@ -1,6 +1,6 @@
 package com.engrkirky.service_metrics_service.kafka;
 
-import com.engrkirky.service_metrics_service.dto.SpeedTestResultDTO;
+import com.engrkirky.service_metrics_service.dto.SpeedTestDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -39,7 +39,7 @@ public class KafkaMessageTests {
             consumer.subscribe(List.of(SPEED_TEST_TOPIC));
             KafkaTestUtils.getRecords(consumer, Duration.ofSeconds(1));
 
-            SpeedTestResultDTO testData = new SpeedTestResultDTO(
+            SpeedTestDTO testData = new SpeedTestDTO(
                     "2026-05-25T09:24:36.148779Z",
                     "Spectrum", "192.168.0.10", "Nashville, TN",
                     1037.11, 39.28, 28.0, 34.0, 27.0
