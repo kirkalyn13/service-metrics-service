@@ -17,10 +17,11 @@ import org.springframework.kafka.test.utils.KafkaTestUtils;
 import java.time.Duration;
 import java.util.List;
 
+import static com.engrkirky.service_metrics_service.config.KafkaTopicConfig.SPEED_TEST_TOPIC;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @SpringBootTest
-@EmbeddedKafka(topics = "speed_test", partitions = 1)
+@EmbeddedKafka(topics = SPEED_TEST_TOPIC, partitions = 1)
 public class KafkaMessageTests {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
@@ -35,7 +36,7 @@ public class KafkaMessageTests {
         var consumerProps = KafkaTestUtils.consumerProps(embeddedKafka, "test-group", true);
         try (Consumer<String, String> consumer = new KafkaConsumer<>(consumerProps, new StringDeserializer(), new StringDeserializer())) {
 
-            consumer.subscribe(List.of("speed_test"));
+            consumer.subscribe(List.of(SPEED_TEST_TOPIC));
             KafkaTestUtils.getRecords(consumer, Duration.ofSeconds(1));
 
             SpeedTestResult testData = new SpeedTestResult(
@@ -45,9 +46,9 @@ public class KafkaMessageTests {
             );
 
             String json = objectMapper.writeValueAsString(testData);
-            kafkaTemplate.send("speed_test", json);
+            kafkaTemplate.send(SPEED_TEST_TOPIC, json);
 
-            ConsumerRecord<String, String> record = KafkaTestUtils.getSingleRecord(consumer, "speed_test", Duration.ofSeconds(5));
+            ConsumerRecord<String, String> record = KafkaTestUtils.getSingleRecord(consumer, SPEED_TEST_TOPIC, Duration.ofSeconds(5));
 
             assertThat(record.value()).isEqualTo(json);
         }
