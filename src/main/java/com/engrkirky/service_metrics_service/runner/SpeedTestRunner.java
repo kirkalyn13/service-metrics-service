@@ -1,10 +1,7 @@
 package com.engrkirky.service_metrics_service.runner;
 
-import com.engrkirky.service_metrics_service.dto.SpeedTestResult;
 import com.engrkirky.service_metrics_service.producer.SpeedTestProducer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationRunner;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 @Component
