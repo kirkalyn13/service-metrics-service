@@ -9,6 +9,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Service implementation for managing speed test data.
+ */
 @Service
 public class SpeedTestServiceImpl implements SpeedTestService {
     private static final Logger log = LoggerFactory.getLogger(SpeedTestServiceImpl.class);
@@ -21,6 +24,11 @@ public class SpeedTestServiceImpl implements SpeedTestService {
         this.speedTestMapper = speedTestMapper;
     }
 
+    /**
+     * Adds a speed test record.
+     *
+     * @param speedTestDTO speed test data to save
+     */
     @Override
     public void addSpeedTest(SpeedTestDTO speedTestDTO) {
         try {

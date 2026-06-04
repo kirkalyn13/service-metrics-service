@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 import static com.engrkirky.service_metrics_service.config.KafkaTopicConfig.SPEED_TEST_TOPIC;
 
+/**
+ * Kafka producer for publishing speed test messages.
+ */
 @Service
 public class SpeedTestProducer {
     private static final Logger log = LoggerFactory.getLogger(SpeedTestProducer.class);
@@ -21,6 +24,11 @@ public class SpeedTestProducer {
         this.kafkaTemplate = kafkaTemplate;
     }
 
+    /**
+     * Publishes a speed test message to Kafka.
+     *
+     * @param speedTestDTO speed test data to publish
+     */
     public void publish(SpeedTestDTO speedTestDTO) {
         try {
             String message = objectMapper.writeValueAsString(speedTestDTO);

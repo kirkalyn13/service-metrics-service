@@ -11,6 +11,9 @@ import org.springframework.stereotype.Component;
 import static com.engrkirky.service_metrics_service.config.KafkaTopicConfig.SPEED_TEST_TOPIC;
 import static com.engrkirky.service_metrics_service.util.KafkaConstants.SERVICE_METRICS_PIPELINE_GROUP_ID;
 
+/**
+ * Kafka consumer for processing speed test messages.
+ */
 @Component
 public class SpeedTestConsumer {
     private static final Logger log = org.slf4j.LoggerFactory.getLogger(SpeedTestConsumer.class);
@@ -22,6 +25,11 @@ public class SpeedTestConsumer {
         this.speedTestService = speedTestService;
     }
 
+    /**
+     * Consumes and processes speed test messages from Kafka.
+     *
+     * @param message JSON message containing speed test data
+     */
     @KafkaListener(topics = SPEED_TEST_TOPIC, groupId = SERVICE_METRICS_PIPELINE_GROUP_ID)
     public void listen(String message) {
         try {

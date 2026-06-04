@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import static com.engrkirky.service_metrics_service.config.KafkaTopicConfig.SPEED_TEST_TOPIC;
 
+/**
+ * REST controller for publishing speed test data to Kafka.
+ */
 @RestController
 @RequestMapping("/api/v1/speed-test")
 public class SpeedTestController {
@@ -21,6 +24,12 @@ public class SpeedTestController {
         this.speedTestProducer = speedTestProducer;
     }
 
+    /**
+     * Publishes a speed test message to Kafka.
+     *
+     * @param speedTestDTO speed test data to publish
+     * @return response containing the publish status
+     */
     @PostMapping
     public ResponseEntity<KafkaResponse> publishSpeedTest(@RequestBody SpeedTestDTO speedTestDTO) {
         try {
