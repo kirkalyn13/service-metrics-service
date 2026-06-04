@@ -10,8 +10,8 @@ spring:
     password: ${PG_PASSWORD}
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-    hibernate:
-      ddl-auto: create
+#    hibernate:
+#      ddl-auto: create
 
 kafka:
   consumer:
