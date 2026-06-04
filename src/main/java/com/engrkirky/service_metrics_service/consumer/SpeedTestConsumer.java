@@ -26,7 +26,7 @@ public class SpeedTestConsumer {
     public void listen(String message) {
         try {
             log.info("Received message: {}", message);
-            SpeedTestDTO speedTestDTO = objectMapper.convertValue(message, SpeedTestDTO.class);
+            SpeedTestDTO speedTestDTO = objectMapper.readValue(message, SpeedTestDTO.class);
             speedTestService.addSpeedTest(speedTestDTO);
         } catch (Exception e) {
             log.error("Error while parsing message: {}", message, e);

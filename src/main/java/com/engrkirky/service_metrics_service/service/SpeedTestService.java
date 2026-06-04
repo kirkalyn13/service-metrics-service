@@ -3,5 +3,5 @@ package com.engrkirky.service_metrics_service.service;
 import com.engrkirky.service_metrics_service.dto.SpeedTestDTO;
 
 public interface SpeedTestService {
-    boolean addSpeedTest(SpeedTestDTO speedTestDTO);
+    void addSpeedTest(SpeedTestDTO speedTestDTO);
 }

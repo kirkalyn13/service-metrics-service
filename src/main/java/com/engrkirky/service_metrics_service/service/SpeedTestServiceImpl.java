@@ -22,13 +22,12 @@ public class SpeedTestServiceImpl implements SpeedTestService {
     }
 
     @Override
-    public boolean addSpeedTest(SpeedTestDTO speedTestDTO) {
+    public void addSpeedTest(SpeedTestDTO speedTestDTO) {
         try {
             SpeedTest speedTest = speedTestMapper.convertToEntity(speedTestDTO);
             log.info("Adding speedTest {}", speedTest);
             speedTestRepository.save(speedTest);
 
-            return true;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
