@@ -24,7 +24,7 @@ Exposes a REST API for publishing service metrics data to Kafka and persisting t
 ```mermaid
 flowchart LR
     A[Device] --> B[FastAPI\nProducer]
-    B --> C[Kafka\nTopic]
+    B --> C[Spring Boot\nTopic]
     C --> D[Consumer]
     D --> E[(PostgreSQL\nraw)]
     E --> F[dbt\nStaging]
@@ -173,7 +173,7 @@ Publishes a speed test result to Kafka and persists it to PostgreSQL.
 
 | Service     | Port  | Description              |
 |-------------|-------|--------------------------|
-| Kafka       | 9092  | KRaft mode broker        |
+| Kafka       | 9092  | Kafka broker             |
 | Kafka UI    | 8081  | Kafka management console |
 | PostgreSQL  | 5435  | Metrics database         |
 
