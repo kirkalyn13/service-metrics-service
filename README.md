@@ -23,8 +23,8 @@ Exposes a REST API for publishing service metrics data to Kafka and persisting t
 ### Streaming (Speed Test)
 ```mermaid
 flowchart LR
-    A[Device] --> B[FastAPI\nProducer]
-    B --> C[Spring Boot\nTopic]
+    A[Device] --> B[Spring Boot\nProducer]
+    B --> C[Kafka\nTopic]
     C --> D[Consumer]
     D --> E[(PostgreSQL\nraw)]
     E --> F[dbt\nStaging]
