@@ -1,4 +1,4 @@
-package com.engrkirky.service_metrics_service.kafka;
+package com.engrkirky.service_metrics_service.consumer;
 
 import com.engrkirky.service_metrics_service.dto.SpeedTestDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,7 +22,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @SpringBootTest
 @EmbeddedKafka(topics = SPEED_TEST_TOPIC, partitions = 1)
-public class KafkaMessageTests {
+public class SpeedTestConsumerTest {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
