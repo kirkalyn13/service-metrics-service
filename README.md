@@ -86,7 +86,7 @@ API_KEY=your-secret-api-key
 
 ```yaml
 server:
-  port: 8081
+  port: 8082
 
 spring:
   application:
@@ -110,7 +110,7 @@ api:
 
 ### Base URL
 ```
-http://localhost:8081/api/v1
+http://localhost:8082/api/v1
 ```
 
 ### Authentication
@@ -188,7 +188,7 @@ Publishes a speed test result to Kafka and persists it to PostgreSQL.
 
 ## API Reference
 
-With the app running, visit the [Swagger UI](http://localhost:8080/swagger-ui/index.html) for full API documentation.
+With the app running, visit the [Swagger UI](http://localhost:8082/swagger-ui/index.html) for full API documentation.
 
 ---
 
