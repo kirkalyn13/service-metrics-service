@@ -186,6 +186,12 @@ Publishes a speed test result to Kafka and persists it to PostgreSQL.
 
 ---
 
+## API Reference
+
+With the app running, visit the [Swagger UI](http://localhost:8080/swagger-ui/index.html) for full API documentation.
+
+---
+
 ## Related Projects
 
 - [`service-metrics-pipeline`](https://github.com/kirkalyn13/service-metrics-pipeline) — The parent pipeline project this service was decoupled from, handling XLSX ingestion, dbt transformations, Airflow orchestration, and a Streamlit dashboard.

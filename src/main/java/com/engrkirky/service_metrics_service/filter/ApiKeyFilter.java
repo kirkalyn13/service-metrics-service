@@ -52,4 +52,16 @@ public class ApiKeyFilter extends OncePerRequestFilter {
             response.getWriter().write(objectMapper.writeValueAsString(errorMessage));
         }
     }
+
+    /**
+     * Determines whether the API key filter should be skipped.
+     *
+     * @param request incoming HTTP request
+     * @return true if filtering should be skipped, otherwise false
+     */
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        String path = request.getRequestURI();
+        return path.startsWith("/swagger-ui") || path.startsWith("/v3/api-docs");
+    }
 }
