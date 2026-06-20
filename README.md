@@ -192,6 +192,34 @@ With the app running, visit the [Swagger UI](http://localhost:8082/swagger-ui/in
 
 ---
 
+## Infrastructure (`/infra`)
+
+This directory contains all Infrastructure as Code (IaC) using Terraform.
+For dev purposers, it provisions and manages AWS-like resources locally via LocalStack for testing.
+
+### Structure
+- `modules/` – Reusable Terraform modules (e.g., EC2, VPC, networking components)
+- `environments/` – Environment-specific configurations (local, dev, prod-ready layout)
+- `main.tf` – Root module entry point
+- `variables.tf` – Input variables
+- `outputs.tf` – Output values
+
+```bash
+terraform init
+terraform plan
+terraform apply
+```
+
+### Local Development (LocalStack)
+
+This project uses LocalStack to emulate AWS services locally for safe testing.
+
+```bash
+tflocal init
+tflocal plan
+tflocal apply
+```
+
 ## Related Projects
 
 - [`service-metrics-pipeline`](https://github.com/kirkalyn13/service-metrics-pipeline) — The parent pipeline project this service was decoupled from, handling XLSX ingestion, dbt transformations, Airflow orchestration, and a Streamlit dashboard.
