@@ -3,6 +3,11 @@ variable "app_name" {
   default = "service-metrics-service"
 }
 
+variable "env" {
+  type    = string
+  default = "dev"
+}
+
 variable "aws_region" {
   type    = string
   default = "us-east-1"
@@ -43,4 +48,14 @@ variable "api_key" {
   description = "API key for the Spring Boot app — set via TF_VAR_api_key"
   type        = string
   sensitive   = true
+}
+
+variable "create_public_subnet" {
+  type    = bool
+  default = false
+}
+
+variable "create_private_subnet" {
+  type    = bool
+  default = true
 }

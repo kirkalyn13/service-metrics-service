@@ -1,26 +1,23 @@
 module "networking" {
-  source     = "git::https://github.com/kirkalyn13/platform-infra.git//modules/networking"
-  app_name   = var.app_name
-  vpc_cidr   = var.vpc_cidr
-  aws_region = var.aws_region
-}
-
-module "secrets" {
-  source   = "git::https://github.com/kirkalyn13/platform-infra.git//modules/secrets"
-  app_name = var.app_name
-  api_key  = var.api_key
+  source                = "git::https://github.com/kirkalyn13/platform-infra.git//modules/networking"
+  app_name              = var.app_name
+  vpc_cidr              = var.vpc_cidr
+  aws_region            = var.aws_region
+  create_public_subnet  = var.create_public_subnet
+  create_private_subnet = var.create_private_subnet
 }
 
 module "ec2" {
-  source         = "git::https://github.com/kirkalyn13/platform-infra.git//modules/ec2"
-  app_name       = var.app_name
-  vpc_id         = module.networking.vpc_id
-  subnet_id      = module.networking.public_subnet_id
-  ami_id         = var.ami_id
-  instance_type  = var.instance_type
-  app_port       = var.app_port
-  app_jar_path   = var.app_jar_path
-  api_secret_arn = module.secrets.secret_arn
+  source          = "git::https://github.com/kirkalyn13/platform-infra.git//modules/ec2"
+  app_name        = var.app_name
+  vpc_id          = module.networking.vpc_id
+  subnet_id       = module.networking.public_subnet_id
+  ami_id          = var.ami_id
+  instance_type   = var.instance_type
+  app_port        = var.app_port
+  app_jar_path    = var.app_jar_path
+  secret_arns     = module.secrets.secret_arns
+  parameter_names = module.parameter_store.parameter_names
 }
 
 module "dns" {
@@ -28,4 +25,26 @@ module "dns" {
   app_name    = var.app_name
   domain_name = var.domain_name
   instance_ip = module.ec2.instance_public_ip
+}
+
+module "secrets" {
+  source   = "git::https://github.com/kirkalyn13/platform-infra.git//modules/secrets"
+  app_name = var.app_name
+  secrets = {
+    api_key = var.api_key
+  }
+}
+
+module "parameter_store" {
+  source     = "git::https://github.com/kirkalyn13/platform-infra.git//modules/parameter_store"
+  app_name   = var.app_name
+  parameters = {}
+}
+
+module "cloudwatch" {
+  source           = "git::https://github.com/kirkalyn13/platform-infra.git//modules/cloudwatch"
+  app_name         = var.app_name
+  env              = var.env
+  instance_id      = module.ec2.instance_id
+  create_cpu_alarm = true
 }

@@ -195,7 +195,25 @@ With the app running, visit the [Swagger UI](http://localhost:8082/swagger-ui/in
 ## Infrastructure (`/infra`)
 
 This directory contains all Infrastructure as Code (IaC) using Terraform.
-For dev purposers, it provisions and manages AWS-like resources locally via LocalStack for testing.
+For dev purposes, it provisions and manages AWS-like resources locally via LocalStack for testing.
+
+### Architecture
+
+![AWS Architecture](./assets/aws-architecture.png)
+
+This project uses a deliberately simple, single-region AWS architecture, prioritizing clarity and maintainability. The design follows core infrastructure best practices — private compute, externalized secrets and configuration, least-privilege IAM, and basic observability — with an architecture built to scale incrementally as requirements evolve.
+
+**Services used:**
+
+- **EC2** — hosts the Spring Boot application that powers the Service Metrics Service server.
+- **VPC** — provides network isolation for the app, with a public/private subnet split so the compute layer isn't directly internet-facing.
+- **Secrets Manager** — stores genuinely sensitive values separately from plain configuration, so they can be managed and rotated independently.
+- **Parameter Store (SSM)** — holds non-sensitive runtime configuration that doesn't need Secrets Manager's rotation/versioning overhead.
+- **IAM** — scopes the EC2 instance's permissions to only what it needs (reading its own secrets/parameters), rather than broad account-level access.
+- **STS** — underlies the temporary credentials IAM roles use to authenticate, standard whenever an EC2 instance profile is involved.
+- **Route 53** — handles DNS resolution for the app under a custom domain, rather than relying on a raw instance IP or default cloud-provider hostname.
+- **CloudWatch** — provides basic operational visibility via a CPU utilization alarm, enough to know if the instance is under sustained load.
+- **CloudWatch Logs** — centralizes the app's logs instead of leaving them only on local disk (`/var/log/app.log`), useful for debugging without SSH-ing into the instance.
 
 ### Structure
 

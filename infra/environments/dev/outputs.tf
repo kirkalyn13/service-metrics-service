@@ -13,7 +13,12 @@ output "app_url" {
   value       = "http://${var.domain_name}:${var.app_port}"
 }
 
-output "secret_arn" {
-  description = "ARN of the API key secret"
-  value       = module.secrets.secret_arn
+output "secret_arns" {
+  description = "ARNs of the API key secret"
+  value       = module.secrets.secret_arns
+}
+
+output "parameter_names" {
+  description = "Parameter Store names"
+  value       = module.parameter_store.parameter_names
 }
