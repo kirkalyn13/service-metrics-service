@@ -18,7 +18,7 @@ env:
   AWS_DEFAULT_REGION: us-east-1
   TF_VAR_aws_region: us-east-1
   TF_VAR_app_name: ${{ vars.APP_NAME }}
-  TF_VAR_api_key: ${{ vars.API_KEY }}
+  TF_VAR_api_key: ${{ secrets.API_KEY }}
 
 jobs:
   terraform:
